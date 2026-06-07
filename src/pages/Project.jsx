@@ -16,34 +16,58 @@ const fadeIn = (delay = 0) => ({
   transition: { duration: 0.7, delay },
 });
 
-// Mission, Challenge, Goal — alternating image/text layout
-function NarrativeSection({ label, text, image, reverse }) {
+// Thin divider between sections
+function Divider() {
   return (
-    <motion.section
-      {...fadeUp()}
-      className={`grid md:grid-cols-2 gap-12 md:gap-24 items-center ${
-        reverse ? "md:[&>*:first-child]:order-2" : ""
-      }`}
-    >
-      {/* Text side */}
-      <div className="space-y-4">
-        <p className="section-label">{label}</p>
-        <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed text-base md:text-lg">
-          {text}
-        </p>
-      </div>
+    <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 dark:via-white/10 to-transparent" />
+  );
+}
 
-      {/* Image side */}
-      {image && (
-        <div className="glass-card overflow-hidden rounded-2xl">
-          <img
-            src={image}
-            alt={label}
-            className="w-full aspect-[4/3] object-cover"
-          />
+// Mission, Challenge, Goal — alternating layout with numbered label
+function NarrativeSection({ label, index, text, image, reverse }) {
+  const num = String(index).padStart(2, "0");
+
+  return (
+    <>
+      <Divider />
+      <motion.section
+        {...fadeUp()}
+        className={`grid md:grid-cols-2 gap-12 md:gap-24 items-center ${
+          reverse ? "md:[&>*:first-child]:order-2" : ""
+        }`}
+      >
+        {/* Text side */}
+        <div className="space-y-4 relative">
+          {/* Faded index number — background texture */}
+          <span
+            aria-hidden="true"
+            className="absolute -top-6 -left-2 text-[6rem] font-bold leading-none select-none pointer-events-none text-neutral-900/[0.04] dark:text-white/[0.04]"
+          >
+            {num}
+          </span>
+
+          {/* Numbered gradient label */}
+          <p className="text-s uppercase tracking-[0.2em] font-medium bg-gradient-to-r from-sky-500 via-violet-500 to-cyan-500 bg-clip-text text-transparent">
+            {num} · {label}
+          </p>
+
+          <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed text-base md:text-lg relative z-10">
+            {text}
+          </p>
         </div>
-      )}
-    </motion.section>
+
+        {/* Image side */}
+        {image && (
+          <div className="glass-card overflow-hidden rounded-2xl">
+            <img
+              src={image}
+              alt={label}
+              className="w-full aspect-[4/3] object-cover"
+            />
+          </div>
+        )}
+      </motion.section>
+    </>
   );
 }
 
@@ -59,24 +83,50 @@ export default function Project() {
     );
   }
 
+  // Build narrative sections dynamically so index is always correct
+  const narrativeSections = [
+    project.mission && {
+      key: "mission",
+      label: "Mission",
+      text: project.mission,
+      image: project.missionImage,
+      reverse: false,
+    },
+    project.challenge && {
+      key: "challenge",
+      label: "Challenge",
+      text: project.challenge,
+      image: project.challengeImage,
+      reverse: true,
+    },
+    project.goal && {
+      key: "goal",
+      label: "Goal",
+      text: project.goal,
+      image: project.goalImage,
+      reverse: false,
+    },
+  ].filter(Boolean);
+
   return (
     <main className="page-shell min-h-screen">
       <div className="max-w-5xl mx-auto space-y-24 md:space-y-28">
-
         {/* ── Header ── */}
         <motion.div {...fadeUp()} className="space-y-6">
-
           {/* ── Back link ── */}
-        <motion.div {...fadeIn()}>
-          <Link
-            to="/works"
-            className="inline-flex items-center mb-4 gap-2 text-sm text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors"
-          >
-            <span>←</span> All Projects
-          </Link>
-        </motion.div>
+          <motion.div {...fadeIn()}>
+            <Link
+              to="/works"
+              className="inline-flex items-center mb-4 gap-2 text-sm text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors"
+            >
+              <span>←</span> All Projects
+            </Link>
+          </motion.div>
 
-          <p className="section-label">{project.category}</p>
+          {/* Category label — gradient accent */}
+          <p className="text-s uppercase tracking-[0.2em] font-medium bg-gradient-to-r from-sky-500 via-violet-500 to-cyan-500 bg-clip-text text-transparent">
+            {project.category}
+          </p>
 
           <h1 className="page-heading">{project.title}</h1>
 
@@ -115,25 +165,17 @@ export default function Project() {
           />
         </motion.div>
 
-        {/* ── Mission ── */}
-        {project.mission && (
+        {/* ── Narrative sections ── */}
+        {narrativeSections.map((section, i) => (
           <NarrativeSection
-            label="Mission"
-            text={project.mission}
-            image={project.missionImage}
-            reverse={false}
+            key={section.key}
+            index={i + 1}
+            label={section.label}
+            text={section.text}
+            image={section.image}
+            reverse={section.reverse}
           />
-        )}
-
-        {/* ── Challenge ── */}
-        {project.challenge && (
-          <NarrativeSection
-            label="Challenge"
-            text={project.challenge}
-            image={project.challengeImage}
-            reverse={true}
-          />
-        )}
+        ))}
 
         <motion.div
           {...fadeIn(0.1)}
@@ -146,26 +188,28 @@ export default function Project() {
           />
         </motion.div>
 
-        {/* ── Goal ── */}
-        {project.goal && (
-          <NarrativeSection
-            label="Goal"
-            text={project.goal}
-            image={project.goalImage}
-            reverse={false}
-          />
-        )}
-
-        {/* ── Result — full width, text only ── */}
+        {/* ── Result ── */}
         {project.result && (
-          <motion.section {...fadeUp()} className="space-y-5">
-            <p className="section-label">Result</p>
-            <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed text-base md:text-lg max-w-3xl">
-              {project.result}
-            </p>
-          </motion.section>
-        )}
+          <>
+            <Divider />
+            <motion.section {...fadeUp()} className="space-y-5 relative">
+              <span
+                aria-hidden="true"
+                className="absolute -top-6 -left-2 text-[6rem] font-bold leading-none select-none pointer-events-none text-neutral-900/[0.04] dark:text-white/[0.04]"
+              >
+                {String(narrativeSections.length + 1).padStart(2, "0")}
+              </span>
 
+              <p className="text-s uppercase tracking-[0.2em] font-medium bg-gradient-to-r from-sky-500 via-violet-500 to-cyan-500 bg-clip-text text-transparent">
+                {String(narrativeSections.length + 1).padStart(2, "0")} · Result
+              </p>
+
+              <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed text-base md:text-lg max-w-3xl relative z-10">
+                {project.result}
+              </p>
+            </motion.section>
+          </>
+        )}
       </div>
     </main>
   );
