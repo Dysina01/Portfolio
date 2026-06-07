@@ -1,6 +1,51 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { projects } from "../data/projects";
 import { motion } from "framer-motion";
+
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 28 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1], delay },
+});
+
+const fadeIn = (delay = 0) => ({
+  initial: { opacity: 0 },
+  whileInView: { opacity: 1 },
+  viewport: { once: true },
+  transition: { duration: 0.7, delay },
+});
+
+// Mission, Challenge, Goal — alternating image/text layout
+function NarrativeSection({ label, text, image, reverse }) {
+  return (
+    <motion.section
+      {...fadeUp()}
+      className={`grid md:grid-cols-2 gap-12 md:gap-24 items-center ${
+        reverse ? "md:[&>*:first-child]:order-2" : ""
+      }`}
+    >
+      {/* Text side */}
+      <div className="space-y-4">
+        <p className="section-label">{label}</p>
+        <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed text-base md:text-lg">
+          {text}
+        </p>
+      </div>
+
+      {/* Image side */}
+      {image && (
+        <div className="glass-card overflow-hidden rounded-2xl">
+          <img
+            src={image}
+            alt={label}
+            className="w-full aspect-[4/3] object-cover"
+          />
+        </div>
+      )}
+    </motion.section>
+  );
+}
 
 export default function Project() {
   const { id } = useParams();
@@ -8,33 +53,60 @@ export default function Project() {
 
   if (!project) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        Project not found
+      <div className="min-h-screen flex items-center justify-center text-neutral-500">
+        Project not found.
       </div>
     );
   }
 
   return (
     <main className="page-shell min-h-screen">
-      <div className="max-w-6xl mx-auto space-y-20 md:space-y-28">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-        >
-          <p className="section-label">{project.category}</p>
+      <div className="max-w-5xl mx-auto space-y-24 md:space-y-28">
 
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-            <h1 className="page-heading">{project.title}</h1>
-            <span className="text-neutral-500 pb-1">{project.year}</span>
-          </div>
+        {/* ── Header ── */}
+        <motion.div {...fadeUp()} className="space-y-6">
+
+          {/* ── Back link ── */}
+        <motion.div {...fadeIn()}>
+          <Link
+            to="/works"
+            className="inline-flex items-center mb-4 gap-2 text-sm text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors"
+          >
+            <span>←</span> All Projects
+          </Link>
         </motion.div>
 
+          <p className="section-label">{project.category}</p>
+
+          <h1 className="page-heading">{project.title}</h1>
+
+          {/* Meta row */}
+          <div className="flex flex-wrap items-center gap-2 text-sm text-neutral-500">
+            {project.role && (
+              <span className="glass-card px-3 py-1 rounded-full">
+                {project.role}
+              </span>
+            )}
+            {project.tags?.map((tag) => (
+              <span key={tag} className="glass-card px-3 py-1 rounded-full">
+                {tag}
+              </span>
+            ))}
+            <span className="ml-auto">{project.year}</span>
+          </div>
+
+          {/* One-liner description */}
+          {project.description && (
+            <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed text-base md:text-lg max-w-2xl">
+              {project.description}
+            </p>
+          )}
+        </motion.div>
+
+        {/* ── Hero image ── */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.15 }}
-          className="glass-card overflow-hidden"
+          {...fadeIn(0.1)}
+          className="glass-card overflow-hidden rounded-2xl"
         >
           <img
             src={project.image}
@@ -43,74 +115,57 @@ export default function Project() {
           />
         </motion.div>
 
-        <section className="grid md:grid-cols-2 gap-8 md:gap-12">
-          <div>
-            <p className="section-label">Overview</p>
-            <h2 className="section-heading leading-tight">
-              Building a clean and modern digital experience.
-            </h2>
-          </div>
-          <div className="flex items-end">
-            <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed">
-              This project focused on creating a thoughtful user experience with
-              modern visual language, intuitive interactions and a minimal
-              interface system.
+        {/* ── Mission ── */}
+        {project.mission && (
+          <NarrativeSection
+            label="Mission"
+            text={project.mission}
+            image={project.missionImage}
+            reverse={false}
+          />
+        )}
+
+        {/* ── Challenge ── */}
+        {project.challenge && (
+          <NarrativeSection
+            label="Challenge"
+            text={project.challenge}
+            image={project.challengeImage}
+            reverse={true}
+          />
+        )}
+
+        <motion.div
+          {...fadeIn(0.1)}
+          className="glass-card overflow-hidden rounded-2xl"
+        >
+          <img
+            src={project.middleImage}
+            alt={project.title}
+            className="w-full aspect-[16/10] md:aspect-[16/9] object-cover"
+          />
+        </motion.div>
+
+        {/* ── Goal ── */}
+        {project.goal && (
+          <NarrativeSection
+            label="Goal"
+            text={project.goal}
+            image={project.goalImage}
+            reverse={false}
+          />
+        )}
+
+        {/* ── Result — full width, text only ── */}
+        {project.result && (
+          <motion.section {...fadeUp()} className="space-y-5">
+            <p className="section-label">Result</p>
+            <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed text-base md:text-lg max-w-3xl">
+              {project.result}
             </p>
-          </div>
-        </section>
+          </motion.section>
+        )}
 
-        <section>
-          <h2 className="section-heading mb-8">Project Details</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="glass-card p-6 md:p-8">
-              <h3 className="text-lg font-semibold mb-3">Problem</h3>
-              <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed">
-                {project.problem}
-              </p>
-            </div>
-            <div className="glass-card p-6 md:p-8">
-              <h3 className="text-lg font-semibold mb-3">Goal</h3>
-              <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed">
-                {project.goal}
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <h2 className="section-heading mb-8">Research</h2>
-          <div className="grid sm:grid-cols-2 gap-4">
-            {project.research?.map((item) => (
-              <div key={item} className="glass-card p-5 md:p-6 text-sm md:text-base">
-                {item}
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section>
-          <p className="section-label">Process</p>
-          <div className="grid md:grid-cols-3 gap-6">
-            {["Research", "Wireframing", "UI Design"].map((item) => (
-              <div key={item} className="glass-card p-6 md:p-8">
-                <h3 className="text-lg font-semibold mb-3">{item}</h3>
-                <p className="text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed">
-                  Carefully crafted workflows and visual systems to improve user
-                  experience.
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section>
-          <h2 className="section-heading mb-6">Learnings</h2>
-          <div className="glass-card p-6 md:p-8">
-            <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed">
-              {project.learnings}
-            </p>
-          </div>
-        </section>
       </div>
     </main>
   );
