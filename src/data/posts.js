@@ -1,5 +1,4 @@
-// src/data/posts.js
-// برای هر پست جدید یه آبجکت اضافه کن
+import tarathumb from "../assets/Posts/Tara-post.jpg";
 
 export const postCategories = ["All", "Case Study", "Thought Piece"];
 
@@ -12,8 +11,7 @@ export const posts = [
     date: "2026-05-10",
     readTime: "5 min",
     // cover: یه عکس import کن اینجا مثل: import taracover from "../assets/..."
-    cover:
-      "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&q=80",
+    cover: tarathumb,
     // images: آرایه‌ای از عکس‌های imported برای اسلایدر
     images: [
       "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&q=80",
