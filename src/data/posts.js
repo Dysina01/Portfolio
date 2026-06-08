@@ -1,4 +1,5 @@
 import tarathumb from "../assets/Posts/Tara-post.webp";
+import DesignIran from "../assets/Posts/Design-Iran.webp";
 
 export const postCategories = ["All", "Case Study", "Thought Piece"];
 
@@ -33,8 +34,7 @@ export const posts = [
     category: "Thought Piece",
     date: "2026-04-22",
     readTime: "3 min",
-    cover:
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+    cover: DesignIran,
     images: [],
     body: [
       "وقتی به پورتفولیوهای دیزاینرهای ایرانی نگاه میکنم، یه چیزی همیشه توجهمو جلب میکنه — همه چیز شبیه هم به نظر میرسه.",
