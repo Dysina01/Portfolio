@@ -156,11 +156,8 @@ export default function Post() {
             </div>
           )}
 
-          {/* Image slider */}
-          <ImageSlider images={post.images} />
-
           {/* Body */}
-          <div className="space-y-6">
+          <div className="space-y-4 pb-12">
             {(Array.isArray(post.body)
               ? post.body
               : post.body.split("\n\n")
@@ -173,6 +170,9 @@ export default function Post() {
               </p>
             ))}
           </div>
+
+          {/* Image slider */}
+          <ImageSlider images={post.images} />
 
           {/* LinkedIn link */}
           {post.linkedinUrl && (
