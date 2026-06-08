@@ -1,4 +1,4 @@
-import tarathumb from "../assets/Posts/Tara-post.jpg";
+import tarathumb from "../assets/Posts/Tara-post.webp";
 
 export const postCategories = ["All", "Case Study", "Thought Piece"];
 

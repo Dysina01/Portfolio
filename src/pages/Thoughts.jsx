@@ -11,21 +11,33 @@ function PostCard({ post, index }) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 10 }}
       transition={{ delay: index * 0.07, duration: 0.45 }}
+      className="h-full"
     >
-      <Link to={`/thoughts/${post.id}`} className="group block">
-        <div className="glass-card overflow-hidden transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.12)] dark:group-hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.4)]">
-          {/* Cover image */}
-          {post.cover && (
-            <div className="overflow-hidden">
+      <Link to={`/thoughts/${post.id}`} className="group block h-full">
+        <div className="glass-card overflow-hidden flex flex-col h-full transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.12)] dark:group-hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.4)]">
+          {/* Image area — square */}
+          <div className="w-full aspect-square overflow-hidden shrink-0">
+            {post.cover ? (
               <img
                 src={post.cover}
                 alt={post.title}
-                className="w-full aspect-[16/7] object-cover transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-            </div>
-          )}
+            ) : (
+              <div
+                className={`w-full h-full flex items-center justify-center text-4xl ${
+                  post.category === "Case Study"
+                    ? "bg-sky-400/8 dark:bg-sky-400/5"
+                    : "bg-violet-400/8 dark:bg-violet-400/5"
+                }`}
+              >
+                {post.category === "Case Study" ? "📐" : "💭"}
+              </div>
+            )}
+          </div>
 
-          <div className="p-6 md:p-8">
+          {/* Content */}
+          <div className="p-6 flex flex-col flex-1">
             <div className="flex items-center gap-3 mb-4">
               <span
                 className={`text-xs px-3 py-1 rounded-full font-medium ${
@@ -41,16 +53,17 @@ function PostCard({ post, index }) {
               </span>
             </div>
 
-            <h2 className="text-xl md:text-2xl font-semibold mb-2 leading-snug group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors duration-300">
+            <h2 className="text-xl font-semibold mb-2 leading-snug group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors duration-300">
               {post.title}
             </h2>
             {post.subtitle && (
-              <p className="text-sm text-neutral-500 mb-5 leading-relaxed">
+              <p className="text-sm text-neutral-500 mb-4 leading-relaxed line-clamp-2">
                 {post.subtitle}
               </p>
             )}
 
-            <div className="flex items-center justify-between">
+            {/* Push date/arrow to bottom */}
+            <div className="flex items-center justify-between mt-auto pt-4 border-t border-black/5 dark:border-white/8">
               <span className="text-xs text-neutral-400">
                 {new Date(post.date).toLocaleDateString("en-US", {
                   month: "short",
@@ -115,7 +128,7 @@ export default function Thoughts() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="grid md:grid-cols-2 gap-6"
+              className="grid md:grid-cols-2 gap-6 items-stretch"
             >
               {filtered.map((post, index) => (
                 <PostCard key={post.id} post={post} index={index} />

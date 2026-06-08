@@ -5,8 +5,8 @@ import { useLanguage } from "../context/LanguageContext";
 import { Link } from "react-router-dom";
 import { projects } from "../data/projects";
 import { posts } from "../data/posts";
-import featuredImageLight from "../assets/featured-light.png";
-import featuredImageDark from "../assets/featured-light.png";
+import featuredImageLight from "../assets/featured-light.webp";
+import featuredImageDark from "../assets/featured-light.webp";
 
 export default function Home() {
   const { language } = useLanguage();
