@@ -1,4 +1,3 @@
-// src/pages/Home.jsx — نسخه آپدیت شده با سکشن Thoughts
 import { motion } from "framer-motion";
 import { translations } from "../data/translations";
 import { useLanguage } from "../context/LanguageContext";
@@ -15,7 +14,7 @@ export default function Home() {
   return (
     <main>
       {/* Hero */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center px-6">
+      <section className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-24">
         <div className="absolute top-[-120px] right-[-80px] w-[320px] md:w-[500px] h-[320px] md:h-[500px] bg-sky-300/30 blur-3xl rounded-full" />
         <div className="absolute bottom-20 left-[-80px] w-[280px] md:w-[400px] h-[280px] md:h-[400px] bg-purple-300/20 blur-3xl rounded-full" />
         <div
