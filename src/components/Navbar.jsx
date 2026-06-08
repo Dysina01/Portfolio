@@ -46,6 +46,7 @@ export default function Navbar() {
           </nav>
 
           <div className="flex items-center gap-2">
+            {/* ── Language Button 
             <button
               onClick={toggleLanguage}
               aria-label="Toggle language"
@@ -53,6 +54,7 @@ export default function Navbar() {
             >
               {language === "en" ? "FA" : "EN"}
             </button>
+── */}
 
             <button
               onClick={toggleTheme}
