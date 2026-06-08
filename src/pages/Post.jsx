@@ -22,6 +22,7 @@ function ImageSlider({ images }) {
     <div className="glass-card overflow-hidden mb-10">
       <div className="relative overflow-hidden rounded-t-3xl">
         <motion.img
+          key={images[current]}
           src={images[current]}
           alt={`Slide ${current + 1}`}
           initial={{ opacity: 0, x: 20 }}
