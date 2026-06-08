@@ -15,10 +15,18 @@ export default function Footer() {
           <div>
             <p className="section-label">Connect</p>
             <div className="flex flex-col gap-2.5 text-sm">
-              <a href="https://linkedin.com/in/sinadalaei" target="_blank" rel="noreferrer">
+              <a
+                href="https://linkedin.com/in/sinadalaei"
+                target="_blank"
+                rel="noreferrer"
+              >
                 LinkedIn
               </a>
-              <a href="https://behnace.net/sinadalaei1" target="_blank" rel="noreferrer">
+              <a
+                href="https://behance.net/sinadalaei1"
+                target="_blank"
+                rel="noreferrer"
+              >
                 Behance
               </a>
               <a href="mailto:sina10dalaei@gmail.com">Email</a>
