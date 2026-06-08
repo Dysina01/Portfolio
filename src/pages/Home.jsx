@@ -1,8 +1,10 @@
+// src/pages/Home.jsx — نسخه آپدیت شده با سکشن Thoughts
 import { motion } from "framer-motion";
 import { translations } from "../data/translations";
 import { useLanguage } from "../context/LanguageContext";
 import { Link } from "react-router-dom";
 import { projects } from "../data/projects";
+import { posts } from "../data/posts";
 import featuredImageLight from "../assets/featured-light.png";
 import featuredImageDark from "../assets/featured-light.png";
 
@@ -12,7 +14,7 @@ export default function Home() {
 
   return (
     <main>
-      {/* Hero — centered, full viewport */}
+      {/* Hero */}
       <section className="relative min-h-screen flex flex-col items-center justify-center px-6">
         <div className="absolute top-[-120px] right-[-80px] w-[320px] md:w-[500px] h-[320px] md:h-[500px] bg-sky-300/30 blur-3xl rounded-full" />
         <div className="absolute bottom-20 left-[-80px] w-[280px] md:w-[400px] h-[280px] md:h-[400px] bg-purple-300/20 blur-3xl rounded-full" />
@@ -87,7 +89,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured project — image fades into page, caption in the fade zone */}
+      {/* Featured project */}
       <section className="relative px-6 -mt-8 md:-mt-16 pb-6 md:pb-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -110,7 +112,6 @@ export default function Home() {
               />
             </div>
 
-            {/* Typography only — sits in the faded area, no box */}
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2 sm:gap-6 -mt-10 sm:-mt-14 md:-mt-20 px-1 md:px-2">
               <div>
                 <p className="text-xs uppercase tracking-[0.2em] text-neutral-400 dark:text-neutral-500 mb-2">
@@ -128,7 +129,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Selected projects — horizontal scroll */}
+      {/* Selected projects */}
       <section className="pt-12 pb-16 md:pt-16 md:pb-24 overflow-visible">
         <div className="px-6 mb-6 md:mb-8 max-w-7xl mx-auto">
           <p className="section-label">Featured Work</p>
@@ -181,6 +182,91 @@ export default function Home() {
           <Link to="/contact" className="btn-primary">
             Get in touch
           </Link>
+        </div>
+      </section>
+
+      {/* ─── Thoughts section ─── */}
+      <section className="pb-16 md:pb-24">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-end justify-between px-6 mb-6 md:mb-8 max-w-7xl mx-auto">
+            <div>
+              <p className="section-label">Writing</p>
+              <h2 className="section-heading">Thoughts</h2>
+            </div>
+            <Link
+              to="/thoughts"
+              className="text-sm text-neutral-500 hover:text-neutral-800 dark:hover:text-white transition-colors pb-1 shrink-0"
+            >
+              See all →
+            </Link>
+          </div>
+
+          <div className="flex flex-col gap-4">
+            {posts.slice(0, 3).map((post, index) => (
+              <motion.div
+                key={post.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.08, duration: 0.5 }}
+              >
+                <Link to={`/thoughts/${post.id}`} className="group block">
+                  <div className="glass-card flex items-center gap-5 p-4 md:p-5 hover:bg-white/40 dark:hover:bg-white/8 transition-colors duration-300">
+                    {/* Thumbnail */}
+                    {post.cover ? (
+                      <div className="shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-2xl overflow-hidden">
+                        <img
+                          src={post.cover}
+                          alt={post.title}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      </div>
+                    ) : (
+                      <div
+                        className={`shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center text-2xl ${
+                          post.category === "Case Study"
+                            ? "bg-sky-400/10"
+                            : "bg-violet-400/10"
+                        }`}
+                      >
+                        {post.category === "Case Study" ? "📐" : "💭"}
+                      </div>
+                    )}
+
+                    {/* Content */}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-1.5">
+                        <span
+                          className={`text-xs px-2.5 py-0.5 rounded-full font-medium ${
+                            post.category === "Case Study"
+                              ? "bg-sky-400/10 text-sky-500 dark:text-sky-400"
+                              : "bg-violet-400/10 text-violet-500 dark:text-violet-400"
+                          }`}
+                        >
+                          {post.category}
+                        </span>
+                        <span className="text-xs text-neutral-400">
+                          {post.readTime} read
+                        </span>
+                      </div>
+                      <h3 className="font-semibold text-base md:text-lg leading-snug mb-0.5 group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors duration-300">
+                        {post.title}
+                      </h3>
+                      {post.subtitle && (
+                        <p className="text-sm text-neutral-500 truncate">
+                          {post.subtitle}
+                        </p>
+                      )}
+                    </div>
+
+                    <span className="text-neutral-300 dark:text-neutral-600 group-hover:text-neutral-500 dark:group-hover:text-neutral-400 group-hover:translate-x-1 transition-all duration-300 shrink-0 text-lg">
+                      →
+                    </span>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
     </main>

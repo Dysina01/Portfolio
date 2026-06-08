@@ -1,3 +1,4 @@
+// src/components/Navbar.jsx
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Moon, Sun, Menu, X } from "lucide-react";
@@ -8,6 +9,7 @@ import { translations } from "../data/translations";
 
 const navLinks = [
   { to: "/works", key: "navWorks" },
+  { to: "/thoughts", key: "navThoughts" },
   { to: "/about", key: "navAbout" },
   { to: "/contact", key: "navContact" },
 ];
@@ -39,14 +41,21 @@ export default function Navbar() {
 
           <nav className="hidden md:flex items-center gap-8 text-sm">
             {navLinks.map(({ to, key }) => (
-              <Link key={to} to={to}>
+              <Link
+                key={to}
+                to={to}
+                className={`transition-colors duration-200 ${
+                  location.pathname.startsWith(to)
+                    ? "text-neutral-900 dark:text-white font-medium"
+                    : "text-neutral-500 hover:text-neutral-900 dark:hover:text-white"
+                }`}
+              >
                 {t[key]}
               </Link>
             ))}
           </nav>
 
           <div className="flex items-center gap-2">
-            {/* ── Language Button 
             <button
               onClick={toggleLanguage}
               aria-label="Toggle language"
@@ -54,7 +63,6 @@ export default function Navbar() {
             >
               {language === "en" ? "FA" : "EN"}
             </button>
-── */}
 
             <button
               onClick={toggleTheme}
@@ -82,16 +90,7 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0, height: "auto" }}
               exit={{ opacity: 0, y: -8, height: 0 }}
               transition={{ duration: 0.25 }}
-              className="
-                md:hidden
-                overflow-hidden
-                mt-2
-                rounded-2xl
-                backdrop-blur-xl
-                bg-white/30 dark:bg-white/10
-                border border-white/20 dark:border-white/10
-                shadow-lg
-              "
+              className="md:hidden overflow-hidden mt-2 rounded-2xl backdrop-blur-xl bg-white/30 dark:bg-white/10 border border-white/20 dark:border-white/10 shadow-lg"
             >
               <div className="flex flex-col p-2">
                 {navLinks.map(({ to, key }) => (
@@ -102,7 +101,7 @@ export default function Navbar() {
                     className={`
                       px-4 py-3 rounded-xl text-sm font-medium transition-colors
                       ${
-                        location.pathname === to
+                        location.pathname.startsWith(to)
                           ? "bg-black/5 dark:bg-white/10"
                           : "hover:bg-black/5 dark:hover:bg-white/10"
                       }
