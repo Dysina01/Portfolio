@@ -163,7 +163,7 @@ export default function Post() {
           )}
 
           {/* Body */}
-          <div className="space-y-4 pb-12">
+          <div className="space-y-2 pb-12">
             {(Array.isArray(post.body)
               ? post.body
               : post.body.split("\n\n")

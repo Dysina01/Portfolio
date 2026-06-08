@@ -5,12 +5,42 @@ import tara3 from "../assets/Posts/Tara/t3.webp";
 import tara4 from "../assets/Posts/Tara/t4.webp";
 import tara5 from "../assets/Posts/Tara/t5.webp";
 import tara6 from "../assets/Posts/Tara/t6.webp";
-
 import DesignIran from "../assets/Posts/Design-Iran.webp";
+import aitools from "../assets/Posts/AI-Tools.webp";
 
 export const postCategories = ["All", "Case Study", "Thought Piece"];
 
 export const posts = [
+  {
+    //AI Use
+    id: "ai-tools",
+    title: "I’m Not a Programmer! But I Built Anyway",
+    subtitle: "AI didn’t replace the process. It changed how I enter it.",
+    category: "Thought Piece",
+    date: "2026-06-08",
+    readTime: "2 min",
+    cover: aitools,
+    images: [],
+    body: [
+      "Tools have changed. The speed of work has changed. The real question is: are we updating ourselves too?",
+      "Over the past few days, I've been working on my personal portfolio.",
+      "Here's the interesting part: I'm not a programmer.",
+      "But with the help of ChatGPT, Claude, and Cursor, I was able to turn my ideas into reality much faster than I expected.",
+      "Not because AI did all the work for me.",
+      "I still had to think, make decisions, test things, break things, and rebuild them.",
+      "But something feels different now.",
+      "In the past, building certain things required months of learning before you could even start.",
+      "Today, you can learn while you're building.",
+      "Maybe the most valuable skill today isn't knowing everything.",
+      "Maybe it's knowing how to use new tools and adapt to change.",
+      "Because the tools aren't waiting for anyone.",
+      "They're getting better every day.",
+      "The question is: are we growing alongside them?",
+    ],
+    linkedinUrl: "https://www.linkedin.com/in/sinadalaei",
+  },
+
+  // Tara
   {
     id: "tara-design-process",
     title: "Tara Redesign Process",
@@ -18,9 +48,7 @@ export const posts = [
     category: "Case Study",
     date: "2026-05-10",
     readTime: "5 min",
-    // cover: یه عکس import کن اینجا مثل: import taracover from "../assets/..."
     cover: tarathumb,
-    // images: آرایه‌ای از عکس‌های imported برای اسلایدر
     images: [tara1, tara2, tara3, tara4, tara5, tara6],
     body: [
       "Tara was more than just a redesign project for me — it was a real challenge. 🔥",
@@ -31,6 +59,8 @@ export const posts = [
     ],
     linkedinUrl: "https://www.linkedin.com/in/sinadalaei",
   },
+
+  //Persian Design
   {
     id: "why-iranian-design",
     title: "What Would an Persian UI Look Like?",
