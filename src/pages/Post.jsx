@@ -2,11 +2,18 @@
 import { useParams, Link } from "react-router-dom";
 import { posts } from "../data/posts";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 
 function ImageSlider({ images }) {
   const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    if (!images || images.length === 0) return;
+    const nextIndex = (current + 1) % images.length;
+    const img = new Image();
+    img.src = images[nextIndex];
+  }, [current, images]);
 
   if (!images || images.length === 0) return null;
 
@@ -22,7 +29,6 @@ function ImageSlider({ images }) {
     <div className="glass-card overflow-hidden mb-10">
       <div className="relative overflow-hidden rounded-t-3xl">
         <motion.img
-          key={images[current]}
           src={images[current]}
           alt={`Slide ${current + 1}`}
           initial={{ opacity: 0, x: 20 }}
