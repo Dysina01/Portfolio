@@ -1,4 +1,11 @@
 import tarathumb from "../assets/Posts/Tara-post.webp";
+import tara1 from "../assets/Posts/Tara/t1.webp";
+import tara2 from "../assets/Posts/Tara/t2.webp";
+import tara3 from "../assets/Posts/Tara/t3.webp";
+import tara4 from "../assets/Posts/Tara/t4.webp";
+import tara5 from "../assets/Posts/Tara/t5.webp";
+import tara6 from "../assets/Posts/Tara/t6.webp";
+
 import DesignIran from "../assets/Posts/Design-Iran.webp";
 
 export const postCategories = ["All", "Case Study", "Thought Piece"];
@@ -14,11 +21,7 @@ export const posts = [
     // cover: یه عکس import کن اینجا مثل: import taracover from "../assets/..."
     cover: tarathumb,
     // images: آرایه‌ای از عکس‌های imported برای اسلایدر
-    images: [
-      "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&q=80",
-      "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800&q=80",
-      "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80",
-    ],
+    images: [tara1, tara2, tara3, tara4, tara5, tara6],
     body: [
       "Tara was more than just a redesign project for me — it was a real challenge. 🔥",
       "A while ago, I decided to redesign the Tara app at the request of my friend and valued mentor, Parnaz Kazemi.",

@@ -13,7 +13,7 @@ function ImageSlider({ images }) {
   if (images.length === 1) {
     return (
       <div className="rounded-3xl overflow-hidden mb-10">
-        <img src={images[0]} alt="visual" className="w-full object-cover" />
+        <img src={images[0]} alt="visual" className="w-full object-contain" />
       </div>
     );
   }
@@ -28,7 +28,7 @@ function ImageSlider({ images }) {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.35 }}
-          className="w-full aspect-[4/3] md:aspect-[16/9] object-cover"
+          className="w-full object-contain"
         />
 
         <button
