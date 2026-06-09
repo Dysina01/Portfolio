@@ -14,6 +14,7 @@ import { useLanguage } from "./context/LanguageContext";
 import Cursor from "./components/Cursor";
 import PageTransition from "./components/PageTransition";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 
 export default function App() {
   const { language } = useLanguage();
@@ -31,6 +32,8 @@ export default function App() {
         duration-500
       "
     >
+      <ScrollToTop />
+
       <Cursor />
       <Navbar />
       <PageTransition>
