@@ -38,7 +38,7 @@ export default function Home() {
             className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[60%] font-semibold tracking-[-0.08em] text-black/[0.025] dark:text-white/[0.025] pointer-events-none select-none whitespace-nowrap text-[clamp(4rem,18vw,15rem)]"
             aria-hidden="true"
           >
-            PORTFOLIO
+            DESIGNER
           </div>
 
           <motion.h1
