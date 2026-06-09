@@ -1,5 +1,11 @@
 import { useEffect } from "react";
-import Lenis from "@studio-freight/lenis";
+import Lenis from "lenis";
+
+let lenisInstance = null;
+
+export function getLenis() {
+  return lenisInstance;
+}
 
 export default function useLenis() {
   useEffect(() => {
@@ -7,6 +13,8 @@ export default function useLenis() {
       duration: 1.2,
       smoothWheel: true,
     });
+
+    lenisInstance = lenis;
 
     function raf(time) {
       lenis.raf(time);
