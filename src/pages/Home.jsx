@@ -12,7 +12,7 @@ export default function Home() {
   const t = translations[language];
 
   return (
-    <main>
+    <main className="overflow-x-hidden">
       {/* Hero */}
       <section className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-24">
         <div className="absolute top-[-120px] right-[-80px] w-[320px] md:w-[500px] h-[320px] md:h-[500px] bg-sky-300/30 blur-3xl rounded-full" />
