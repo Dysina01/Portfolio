@@ -16,11 +16,20 @@ export default function useLenis() {
 
     lenisInstance = lenis;
 
+    // ← این خط رو اضافه کن
+    lenis.scrollTo(0, { immediate: true });
+
+    let rafId;
     function raf(time) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     }
+    rafId = requestAnimationFrame(raf);
 
-    requestAnimationFrame(raf);
+    return () => {
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
+      lenisInstance = null;
+    };
   }, []);
 }
