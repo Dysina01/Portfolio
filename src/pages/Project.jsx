@@ -110,7 +110,7 @@ export default function Project() {
 
   return (
     <main className="page-shell min-h-screen">
-      <div className="max-w-5xl mx-auto space-y-24 md:space-y-28">
+      <div className="max-w-5xl mx-auto space-y-16 md:space-y-20">
         {/* ── Header ── */}
         <motion.div {...fadeUp()} className="space-y-6">
           {/* ── Back link ── */}
@@ -137,7 +137,7 @@ export default function Project() {
                 {project.role}
               </span>
             )}
-            {project.tags?.map((tag) => (
+            {project.badge?.map((tag) => (
               <span key={tag} className="glass-card px-3 py-1 rounded-full">
                 {tag}
               </span>
@@ -211,6 +211,17 @@ export default function Project() {
           </>
         )}
       </div>
+      {/* Thoughts CTA */}
+      {project.thoughtsSlug && (
+        <div className="flex justify-center pb-10 pt-24">
+          <Link
+            to={`/thoughts/${project.thoughtsSlug}`}
+            className="glass-card px-8 py-4 text-sm font-medium hover:opacity-80 transition-opacity"
+          >
+            Read Design Process
+          </Link>
+        </div>
+      )}
     </main>
   );
 }
