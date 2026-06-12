@@ -83,27 +83,40 @@ export default function Project() {
     );
   }
 
-  // Build narrative sections dynamically so index is always correct
   const narrativeSections = [
-    project.mission && {
-      key: "mission",
-      label: "Mission",
-      text: project.mission,
-      image: project.missionImage,
+    project.overview && {
+      key: "overview",
+      label: "Overview",
+      text: project.overview,
+      image: project.overviewImage,
       reverse: false,
     },
-    project.challenge && {
-      key: "challenge",
-      label: "Challenge",
-      text: project.challenge,
-      image: project.challengeImage,
+    project.problem && {
+      key: "problem",
+      label: "Problem",
+      text: project.problem,
+      image: project.problemImage,
       reverse: true,
     },
-    project.goal && {
-      key: "goal",
-      label: "Goal",
-      text: project.goal,
-      image: project.goalImage,
+    project.research && {
+      key: "research",
+      label: "Research",
+      text: project.research,
+      image: project.researchImage,
+      reverse: false,
+    },
+    project.goals && {
+      key: "goals",
+      label: "Goals",
+      text: project.goals,
+      image: project.goalsImage,
+      reverse: true,
+    },
+    project.solution && {
+      key: "solution",
+      label: "Solution",
+      text: project.solution,
+      image: project.solutionImage,
       reverse: false,
     },
   ].filter(Boolean);
@@ -152,7 +165,6 @@ export default function Project() {
             </p>
           )}
         </motion.div>
-
         {/* ── Hero image ── */}
         <motion.div
           {...fadeIn(0.1)}
@@ -164,7 +176,6 @@ export default function Project() {
             className="w-full aspect-[16/10] md:aspect-[16/9] object-cover"
           />
         </motion.div>
-
         {/* ── Narrative sections ── */}
         {narrativeSections.map((section, i) => (
           <NarrativeSection
@@ -176,20 +187,18 @@ export default function Project() {
             reverse={section.reverse}
           />
         ))}
-
         <motion.div
           {...fadeIn(0.1)}
           className="glass-card overflow-hidden rounded-2xl"
         >
           <img
-            src={project.middleImage}
+            src={project.finalImage || project.middleImage}
             alt={project.title}
             className="w-full aspect-[16/10] md:aspect-[16/9] object-cover"
           />
         </motion.div>
 
-        {/* ── Result ── */}
-        {project.result && (
+        {project.outcome && (
           <>
             <Divider />
             <motion.section {...fadeUp()} className="space-y-5 relative">
@@ -199,18 +208,18 @@ export default function Project() {
               >
                 {String(narrativeSections.length + 1).padStart(2, "0")}
               </span>
-
               <p className="text-s uppercase tracking-[0.2em] font-medium bg-gradient-to-r from-sky-500 via-violet-500 to-cyan-500 bg-clip-text text-transparent">
-                {String(narrativeSections.length + 1).padStart(2, "0")} · Result
+                {String(narrativeSections.length + 1).padStart(2, "0")} ·
+                Outcome
               </p>
-
               <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed text-base md:text-lg max-w-3xl relative z-10">
-                {project.result}
+                {project.outcome}
               </p>
             </motion.section>
           </>
         )}
       </div>
+
       {/* Thoughts CTA */}
       {project.thoughtsSlug && (
         <div className="flex justify-center pb-10 pt-24">

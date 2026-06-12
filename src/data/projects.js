@@ -16,29 +16,29 @@ export const projects = [
     role: ["Role: UI/UX Designer"],
     badge: ["Real Project"],
     description: "lalalala",
-
-    // Hero Image
     image: sakenthumb,
 
-    // text + optional image (4:3 works best)
-    mission:
-      "My mission was to rebuild trust and clarity within Tara's user experience: streamline the onboarding and credit verification steps, reduce friction across essential tasks, and introduce a fresh, modern visual identity aligned with Gen Z behaviors and expectations.",
-    missionImage: "/images/tara-mission.png",
+    overview: "My mission was to rebuild trust...",
+    overviewImage: "/images/tara-mission.png",
 
-    challenge:
-      "One of the biggest challenges came from usability tests and app-store feedback. Many users — especially those without a national ID — were stuck and forced to abandon the credit verification process. The interface also caused hesitation, making users unsure about completing basic tasks.",
-    challengeImage: "/images/tara-challenge.png",
+    problem: "One of the biggest challenges...",
+    problemImage: "/images/tara-challenge.png",
+
+    research: "One of the biggest challenges...",
+    researchImage: "/images/tara-challenge.png",
 
     middleImage: "/images/tara-middle.png",
 
-    goal: "Reduce friction across all essential flows. Simplify onboarding, clarify the credit verification steps, reorganize the information architecture, and bring a modern design system that better reflects Gen Z expectations.",
-    goalImage: "/images/tara-goal.png",
+    goals: "Reduce friction across all essential flows...",
+    goalsImage: "/images/tara-goal.png",
 
-    // Result — text only, no image
-    result:
-      "The final redesign delivered a smoother onboarding experience, a more accessible credit verification flow, and a clearer structure that reduced confusion during usability testing. Users completed tasks faster and with more confidence.",
+    solution: "Reduce friction across all essential flows...",
+    solutionImage: "/images/tara-goal.png",
 
-    // Optional
+    outcome: "The final redesign delivered a smoother onboarding experience...",
+
+    finalImage: "/images/tara-middle.png",
+
     thoughtsSlug: "",
   },
 
