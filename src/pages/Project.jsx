@@ -176,8 +176,8 @@ export default function Project() {
             className="w-full aspect-[16/10] md:aspect-[16/9] object-cover"
           />
         </motion.div>
-        {/* ── Narrative sections ── */}
-        {narrativeSections.map((section, i) => (
+        {/* ── First narrative sections ── */}
+        {narrativeSections.slice(0, 3).map((section, i) => (
           <NarrativeSection
             key={section.key}
             index={i + 1}
@@ -187,18 +187,34 @@ export default function Project() {
             reverse={section.reverse}
           />
         ))}
-        <motion.div
-          {...fadeIn(0.1)}
-          className="glass-card overflow-hidden rounded-2xl"
-        >
-          <img
-            src={project.finalImage || project.middleImage}
-            alt={project.title}
-            className="w-full aspect-[16/10] md:aspect-[16/9] object-cover"
-          />
-        </motion.div>
 
-        {project.outcome && (
+        {/* ── Middle image (after Overview / Problem / Research) ── */}
+        {project.middleImage && (
+          <motion.div
+            {...fadeIn(0.1)}
+            className="glass-card overflow-hidden rounded-2xl"
+          >
+            <img
+              src={project.middleImage}
+              alt={`${project.title} showcase`}
+              className="w-full aspect-[16/10] md:aspect-[16/9] object-cover"
+            />
+          </motion.div>
+        )}
+
+        {/* ── Remaining narrative sections ── */}
+        {narrativeSections.slice(3).map((section, i) => (
+          <NarrativeSection
+            key={section.key}
+            index={i + 4}
+            label={section.label}
+            text={section.text}
+            image={section.image}
+            reverse={section.reverse}
+          />
+        ))}
+
+        {(project.outcome || project.result) && (
           <>
             <Divider />
             <motion.section {...fadeUp()} className="space-y-5 relative">
@@ -213,10 +229,22 @@ export default function Project() {
                 Outcome
               </p>
               <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed text-base md:text-lg max-w-3xl relative z-10">
-                {project.outcome}
+                {project.outcome || project.result}
               </p>
             </motion.section>
           </>
+        )}
+        {project.finalImage && (project.outcome || project.result) && (
+          <motion.div
+            {...fadeIn(0.1)}
+            className="glass-card overflow-hidden rounded-2xl"
+          >
+            <img
+              src={project.finalImage}
+              alt={`${project.title} final showcase`}
+              className="w-full aspect-[16/10] md:aspect-[16/9] object-cover"
+            />
+          </motion.div>
         )}
       </div>
 

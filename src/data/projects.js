@@ -53,29 +53,35 @@ export const projects = [
     badge: ["UI", "UX"],
     description:
       "A credit-based shopping and payment app redesigned for Gen Z users — faster, clearer, and more trustworthy.",
-
-    // Hero image
     image: tarathumb,
 
-    // text + optional image (4:3 works best)
-    mission:
-      "My mission was to rebuild trust and clarity within Tara's user experience: streamline the onboarding and credit verification steps, reduce friction across essential tasks, and introduce a fresh, modern visual identity aligned with Gen Z behaviors and expectations.",
-    missionImage: "/images/tara-mission.png",
+    overview:
+      "Tara is a credit-based shopping and payment app. In this redesign, I approached the project as a problem-solver: identifying real user pain points, fixing core flows, and rebuilding the experience for a faster, clearer, and more trustworthy product, especially for Gen Z users.",
+    overviewImage: "/images/tara-mission.png",
 
-    challenge:
-      "One of the biggest challenges came from usability tests and app-store feedback. Many users — especially those without a national ID — were stuck and forced to abandon the credit verification process. The interface also caused hesitation, making users unsure about completing basic tasks.",
-    challengeImage: "/images/tara-challenge.png",
+    problem:
+      "Users encountered significant friction during the identity verification process. One of the most critical issues affected users who had not yet received their physical national ID card. The flow only accepted a photo of the card itself, providing no alternative option to submit a tracking code or temporary receipt. As a result, many users were unable to complete verification and were forced to abandon the process.",
+    problemImage: "/images/tara-challenge.png",
+
+    research:
+      "Through usability testing and user interviews, two key issues emerged: limitations in the verification flow and confusion caused by the interface design. These findings helped identify the areas with the greatest impact on the overall user experience.",
+    researchImage: "/images/tara-challenge.png",
 
     middleImage: "/images/tara-middle.png",
 
-    goal: "Reduce friction across all essential flows. Simplify onboarding, clarify the credit verification steps, reorganize the information architecture, and bring a modern design system that better reflects Gen Z expectations.",
-    goalImage: "/images/tara-goal.png",
+    goals:
+      "The redesign focused on simplifying key user journeys, improving the onboarding experience, increasing transparency during verification processes, and establishing a modern visual language that better reflects the needs and expectations of Gen Z users.",
+    goalsImage: "/images/tara-goal.png",
 
-    // Result — text only, no image
-    result:
-      "The final redesign delivered a smoother onboarding experience, a more accessible credit verification flow, and a clearer structure that reduced confusion during usability testing. Users completed tasks faster and with more confidence.",
+    solution:
+      "The final solution introduced a cleaner information architecture, clearer user guidance, improved visual hierarchy, and a more consistent design system. These changes helped users navigate the product with greater confidence and complete tasks more efficiently.",
+    solutionImage: "/images/tara-goal.png",
 
-    // Optional
+    outcome:
+      "The redesign resulted in a more approachable and intuitive experience that reduced confusion across critical flows. By improving clarity and trust, the product became easier to understand and more aligned with the expectations of modern digital users.",
+
+    finalImage: "/images/tara-middle.png",
+
     thoughtsSlug: "tara-design-process",
   },
 
@@ -89,5 +95,28 @@ export const projects = [
     description:
       "A premium dashboard experience with smooth workflows and modern UI components.",
     image: arsinthumb,
+
+    overview: "My mission was to rebuild trust...",
+    overviewImage: "/images/tara-mission.png",
+
+    problem: "One of the biggest challenges...",
+    problemImage: "/images/tara-challenge.png",
+
+    research: "One of the biggest challenges...",
+    researchImage: "/images/tara-challenge.png",
+
+    middleImage: "/images/tara-middle.png",
+
+    goals: "Reduce friction across all essential flows...",
+    goalsImage: "/images/tara-goal.png",
+
+    solution: "Reduce friction across all essential flows...",
+    solutionImage: "/images/tara-goal.png",
+
+    outcome: "The final redesign delivered a smoother onboarding experience...",
+
+    finalImage: "/images/tara-middle.png",
+
+    thoughtsSlug: "",
   },
 ];
