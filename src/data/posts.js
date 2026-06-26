@@ -1,4 +1,4 @@
-import tarathumb from "../assets/Posts/Tara-post.webp";
+import tarathumb from "../assets/Posts/tara-post.webp";
 const taraImages = Object.entries(
   import.meta.glob("../assets/Posts/Tara/*.webp", {
     eager: true,
@@ -8,6 +8,7 @@ const taraImages = Object.entries(
   .sort(([a], [b]) => a.localeCompare(b))
   .map(([, image]) => image);
 
+import sakenthumb from "../assets/Posts/saken-cover.webp";
 const sakenImages = Object.entries(
   import.meta.glob("../assets/Posts/Saken/*.webp", {
     eager: true,
@@ -20,9 +21,29 @@ const sakenImages = Object.entries(
 import DesignIran from "../assets/Posts/Design-Iran.webp";
 import aitools from "../assets/Posts/AI-Tools.webp";
 
-export const postCategories = ["All", "Case Study", "Thought Piece"];
+export const postCategories = ["All", "Design Procces", "Thought Piece"];
 
 export const posts = [
+  {
+    // Saken
+    id: "saken-design-procces",
+    title: "Saken Design Process",
+    subtitle: "Manage Your Building with Confidence!",
+    category: "Design Procces",
+    date: "2026-06-26",
+    readTime: "6 min",
+    cover: sakenthumb,
+    images: sakenImages,
+    body: [
+      "Saken, When a Real Problem Motivates You to Build Something from Scratch… 🏡",
+      "Many residential buildings are still managed through WhatsApp groups, paperwork, and scattered communication. The result? Unpaid maintenance fees, confusion, and frustrated residents. 😅",
+      "In this redesign, I focused on removing unnecessary decisions, highlighting key information, and simplifying anything that required extra effort or thought from users.",
+      "That’s where the idea for Saken was born—an app that brings every aspect of residential building management into one place:",
+      "From paying maintenance fees and viewing financial reports to submitting maintenance requests, participating in resident polls, and even reserving shared building facilities. ❗",
+      "I worked on this project alongside my amazing mentor, Parnaz Kazemi, and I’m grateful to have had her guidance and support throughout the journey (as always). 🙏",
+    ],
+    linkedinUrl: "https://www.linkedin.com/in/sinadalaei",
+  },
   {
     //AI Use
     id: "ai-tools",
@@ -57,31 +78,11 @@ export const posts = [
     id: "tara-design-process",
     title: "Tara Redesign Process",
     subtitle: "Idea to Prototype",
-    category: "Case Study",
+    category: "Design Procces",
     date: "2026-05-10",
     readTime: "5 min",
     cover: tarathumb,
     images: taraImages,
-    body: [
-      "Tara was more than just a redesign project for me — it was a real challenge. 🔥",
-      "A while ago, I decided to redesign the Tara app at the request of my friend and valued mentor, Parnaz Kazemi.",
-      "In this redesign, I focused on removing unnecessary decisions, highlighting key information, and simplifying anything that required extra effort or thought from users.",
-      "I also worked on addressing the main usability issues reported by users while giving Tara a fresh and distinctive visual identity. ✨",
-      "This post is a brief overview of the process I went through and a glimpse into the final outcome of the redes",
-    ],
-    linkedinUrl: "https://www.linkedin.com/in/sinadalaei",
-  },
-
-  // Saken
-  {
-    id: "saken-design-process",
-    title: "Saken Redesign Process",
-    subtitle: "Idea to Prototype",
-    category: "Case Study",
-    date: "2026-05-10",
-    readTime: "5 min",
-    cover: tarathumb,
-    images: sakenImages,
     body: [
       "Tara was more than just a redesign project for me — it was a real challenge. 🔥",
       "A while ago, I decided to redesign the Tara app at the request of my friend and valued mentor, Parnaz Kazemi.",

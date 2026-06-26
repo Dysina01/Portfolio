@@ -39,7 +39,7 @@ export const projects = [
 
     finalImage: "/images/tara-middle.png",
 
-    thoughtsSlug: "",
+    thoughtsSlug: "saken-design-procces",
   },
 
   {
