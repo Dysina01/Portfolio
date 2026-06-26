@@ -1,4 +1,4 @@
-import tarathumb from "../assets/Posts/tara-post.webp";
+import tarathumb from "../assets/Posts/Tara-Post.webp";
 const taraImages = Object.entries(
   import.meta.glob("../assets/Posts/Tara/*.webp", {
     eager: true,
