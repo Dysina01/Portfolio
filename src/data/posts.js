@@ -8,7 +8,7 @@ const taraImages = Object.entries(
   .sort(([a], [b]) => a.localeCompare(b))
   .map(([, image]) => image);
 
-import sakenthumb from "../assets/Posts/tara-post.webp";
+import sakenthumb from "../assets/Posts/saken-cover.webp";
 const sakenImages = Object.entries(
   import.meta.glob("../assets/Posts/Saken/*.webp", {
     eager: true,
