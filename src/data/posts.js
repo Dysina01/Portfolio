@@ -1,10 +1,22 @@
 import tarathumb from "../assets/Posts/Tara-post.webp";
-import tara1 from "../assets/Posts/Tara/t1.webp";
-import tara2 from "../assets/Posts/Tara/t2.webp";
-import tara3 from "../assets/Posts/Tara/t3.webp";
-import tara4 from "../assets/Posts/Tara/t4.webp";
-import tara5 from "../assets/Posts/Tara/t5.webp";
-import tara6 from "../assets/Posts/Tara/t6.webp";
+const taraImages = Object.entries(
+  import.meta.glob("../assets/Posts/Tara/*.webp", {
+    eager: true,
+    import: "default",
+  }),
+)
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([, image]) => image);
+
+const sakenImages = Object.entries(
+  import.meta.glob("../assets/Posts/Saken/*.webp", {
+    eager: true,
+    import: "default",
+  }),
+)
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([, image]) => image);
+
 import DesignIran from "../assets/Posts/Design-Iran.webp";
 import aitools from "../assets/Posts/AI-Tools.webp";
 
@@ -49,7 +61,27 @@ export const posts = [
     date: "2026-05-10",
     readTime: "5 min",
     cover: tarathumb,
-    images: [tara1, tara2, tara3, tara4, tara5, tara6],
+    images: taraImages,
+    body: [
+      "Tara was more than just a redesign project for me — it was a real challenge. 🔥",
+      "A while ago, I decided to redesign the Tara app at the request of my friend and valued mentor, Parnaz Kazemi.",
+      "In this redesign, I focused on removing unnecessary decisions, highlighting key information, and simplifying anything that required extra effort or thought from users.",
+      "I also worked on addressing the main usability issues reported by users while giving Tara a fresh and distinctive visual identity. ✨",
+      "This post is a brief overview of the process I went through and a glimpse into the final outcome of the redes",
+    ],
+    linkedinUrl: "https://www.linkedin.com/in/sinadalaei",
+  },
+
+  // Saken
+  {
+    id: "saken-design-process",
+    title: "Saken Redesign Process",
+    subtitle: "Idea to Prototype",
+    category: "Case Study",
+    date: "2026-05-10",
+    readTime: "5 min",
+    cover: tarathumb,
+    images: sakenImages,
     body: [
       "Tara was more than just a redesign project for me — it was a real challenge. 🔥",
       "A while ago, I decided to redesign the Tara app at the request of my friend and valued mentor, Parnaz Kazemi.",
